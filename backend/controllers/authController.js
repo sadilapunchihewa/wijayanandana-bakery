@@ -2,6 +2,17 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const generateToken = (id) =>
+  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+
+const sanitizeUser = (userDoc) => ({
+  _id: userDoc._id,
+  name: userDoc.name,
+  email: userDoc.email,
+  createdAt: userDoc.createdAt,
+  updatedAt: userDoc.updatedAt,
+});
+
 
 // REGISTER
 const registerUser = async (req, res) => {
@@ -27,11 +38,13 @@ const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
+    const token = generateToken(user._id);
 
     res.status(201).json({
       success: true,
       message: "Registration Successful",
-      user,
+      token,
+      user: sanitizeUser(user),
     });
 
   } catch (error) {
@@ -70,18 +83,13 @@ const loginUser = async (req, res) => {
       });
     }
 
-    // create token
-    const token = jwt.sign(
-      { id: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: "7d" }
-    );
+    const token = generateToken(user._id);
 
     res.status(200).json({
       success: true,
       message: "Login Successful",
       token,
-      user,
+      user: sanitizeUser(user),
     });
 
   } catch (error) {

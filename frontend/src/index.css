@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* Luxury theme base styles */
+
+:root {
+  --lux-bg: #f7f3ec;
+  --lux-bg-soft: rgba(255, 255, 255, 0.8);
+  --lux-cream: #fdf6e9;
+  --lux-brown: #3a2518;
+  --lux-brown-soft: #5a3b29;
+  --lux-gold: #d4af37;
+  --lux-gold-soft: rgba(212, 175, 55, 0.1);
+  --lux-border: rgba(90, 59, 41, 0.08);
+  --lux-shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.08);
+  --lux-radius-xl: 32px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, #ffffff 0, #f7f3ec 40%, #f0e4d5 100%);
+  color: #3a2518;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Luxury scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90, 59, 41, 0.35) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #c89b3c, #8b5a2b);
+  border-radius: 999px;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: radial-gradient(circle at top left, #ffffff 0, #fdf6e9 40%, #f5ece1 100%);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: var(--lux-shadow-soft);
+  border-radius: var(--lux-radius-xl);
+  border: 1px solid var(--lux-border);
+}
+
+.lux-gold-text {
+  background: linear-gradient(120deg, #e0c067, #b48a2c);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.lux-section {
+  scroll-margin-top: 96px;
+}
