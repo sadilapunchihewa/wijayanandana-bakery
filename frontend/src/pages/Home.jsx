@@ -4,6 +4,7 @@ import breadImg from '../assets/images/bread.jpg'
 import heroImg from '../assets/images/home.jpg'
 import logoImg from '../assets/images/logo.png.jpg'
 import storyImg from '../assets/images/wijaya nandana hotel 02.jpg'
+import { useCart } from '../context/useCart'
 import { bakeryCategories, getBakeryProducts, getMeals, mealCategories } from '../services/adminService'
 
 const imageBank = {
@@ -299,6 +300,8 @@ function CatalogSection({ eyebrow, title, text, items, itemType, dark = false })
 
 function ProductCard({ item, index, itemType, dark = false }) {
   const title = itemType === 'meal' ? item.mealName : item.productName
+  const { addToCart } = useCart()
+  const cartId = `${itemType}-${item._id || title}`
 
   return (
     <motion.article
@@ -334,7 +337,20 @@ function ProductCard({ item, index, itemType, dark = false }) {
           <span className="text-sm font-bold text-[#F59E0B]">
             Rating <span className={dark ? 'text-white/70' : 'text-[#6B4A2A]'}>{Number(item.rating || 4.8).toFixed(1)}</span>
           </span>
-          <motion.button whileTap={{ scale: 0.96 }} className="rounded-full bg-gradient-to-r from-[#D97706] to-[#F59E0B] px-4 py-2.5 text-sm font-extrabold text-white shadow-[0_14px_32px_rgba(217,119,6,0.28)]">
+          <motion.button
+            whileTap={{ scale: 0.96 }}
+            onClick={() =>
+              addToCart({
+                cartId,
+                name: title,
+                category: item.category,
+                type: itemType === 'meal' ? 'Meal' : 'Bakery item',
+                price: Number(item.price || 0),
+                image: item.image || imageBank.pastry,
+              })
+            }
+            className="rounded-full bg-gradient-to-r from-[#D97706] to-[#F59E0B] px-4 py-2.5 text-sm font-extrabold text-white shadow-[0_14px_32px_rgba(217,119,6,0.28)]"
+          >
             Add to Cart
           </motion.button>
         </div>

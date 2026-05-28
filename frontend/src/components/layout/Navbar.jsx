@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
+import { useCart } from '../../context/useCart'
 import logoImg from '../../assets/images/logo.png.jpg'
 
 const navItems = [
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const { isAuthenticated, user, logout } = useAuth()
+  const { count } = useCart()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -87,7 +89,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <button
             type="button"
-            onClick={() => handleScrollTo('#contact')}
+            onClick={() => navigate('/cart')}
             className="relative flex h-12 w-12 items-center justify-center rounded-full border border-[#FED7AA] bg-white/62 text-[#1F2937] shadow-sm transition hover:-translate-y-0.5 hover:bg-white"
           >
             <span className="sr-only">Cart</span>
@@ -96,7 +98,11 @@ export default function Navbar() {
               <path d="M6 6 5 3H2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
               <path d="M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM18 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="currentColor" strokeWidth="2" />
             </svg>
-            <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#DC2626] text-[0.65rem] font-extrabold text-white">2</span>
+            {count > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#DC2626] px-1 text-[0.65rem] font-extrabold text-white">
+                {count}
+              </span>
+            )}
           </button>
           {isAuthenticated ? (
             <>
@@ -170,12 +176,22 @@ export default function Navbar() {
                 </button>
               ))}
             </nav>
-            <div className="mt-4 flex gap-2 border-t border-[#FED7AA] pt-4">
+            <div className="mt-4 grid gap-2 border-t border-[#FED7AA] pt-4 sm:grid-cols-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false)
+                  navigate('/cart')
+                }}
+                className="rounded-full border border-[#F59E0B]/50 px-4 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-[#1F2937]"
+              >
+                Cart {count > 0 ? `(${count})` : ''}
+              </button>
               {isAuthenticated ? (
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="flex-1 rounded-full border border-[#F59E0B]/50 px-4 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-[#1F2937]"
+                  className="rounded-full border border-[#F59E0B]/50 px-4 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-[#1F2937]"
                 >
                   Logout
                 </button>
@@ -183,7 +199,7 @@ export default function Navbar() {
                 <NavLink
                   to="/login"
                   onClick={() => setOpen(false)}
-                  className="flex-1 rounded-full border border-[#F59E0B]/50 px-4 py-3 text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#1F2937]"
+                  className="rounded-full border border-[#F59E0B]/50 px-4 py-3 text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#1F2937]"
                 >
                   Login
                 </NavLink>
@@ -191,7 +207,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => handleScrollTo('#contact')}
-                className="flex-1 rounded-full bg-gradient-to-r from-[#DC2626] to-[#F59E0B] px-4 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white"
+                className="rounded-full bg-gradient-to-r from-[#DC2626] to-[#F59E0B] px-4 py-3 text-xs font-extrabold uppercase tracking-[0.16em] text-white"
               >
                 Order Now
               </button>
