@@ -19,8 +19,16 @@ app.use(express.json());
 // Routes
 const authRoutes = require("./routers/authRoutes.js");
 const userRoutes = require("./routers/userRoutes.js");
+const productRoutes = require("./routers/productRoutes.js");
+const orderRoutes = require("./routers/orderRoutes.js");
+const mealRoutes = require("./routers/mealRoutes.js");
+const bakeryProductRoutes = require("./routers/bakeryProductRoutes.js");
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/meals", mealRoutes);
+app.use("/api/bakery-products", bakeryProductRoutes);
 
 
 // MongoDB Connection

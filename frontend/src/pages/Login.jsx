@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext'
 import PrimaryButton from '../components/ui/PrimaryButton'
 import GlassCard from '../components/ui/GlassCard'
 import heroImg from '../assets/hero.png'
+import logoImg from '../assets/images/logo.png.jpg'
 
 const fieldVariants = {
   focused: {
@@ -66,6 +67,13 @@ export default function Login() {
           <div className="absolute -left-10 bottom-10 h-40 w-40 rounded-full bg-[#9b6b3b]/40 blur-2xl" />
 
           <div className="relative px-10 pt-10">
+            <div className="mb-6 flex h-16 w-16 items-center justify-center overflow-hidden rounded-3xl bg-white/95 shadow-[0_18px_45px_rgba(0,0,0,0.3)] ring-1 ring-white/40">
+              <img
+                src={logoImg}
+                alt="Wijayanandana logo"
+                className="h-full w-full object-contain p-2"
+              />
+            </div>
             <p className="text-[0.78rem] tracking-[0.28em] uppercase text-[#f2d8af]/80">
               Wijayanandana
             </p>
@@ -75,8 +83,8 @@ export default function Login() {
               every morning.
             </h1>
             <p className="mt-3 text-sm text-[#f4dec1]/80">
-              Sign in to curate today&apos;s collection of signature breads, couture cakes, and
-              hotel specials.
+              Sign in to manage today&apos;s breads, cakes, short eats, breakfast, lunch, and dinner
+              service.
             </p>
           </div>
 
@@ -100,7 +108,7 @@ export default function Login() {
             <div className="flex items-center justify-between">
               <p>Curating taste since 1998.</p>
               <p className="text-[0.7rem] tracking-[0.2em] uppercase text-[#f2d8af]">
-                Matara · Sri Lanka
+                Anguruwella · Ruwanwella
               </p>
             </div>
           </div>
@@ -114,6 +122,21 @@ export default function Login() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
           >
+            <div className="mb-5 flex items-center gap-3">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-3xl bg-white shadow-md shadow-black/10 ring-1 ring-[#e2d2b8]">
+                <img
+                  src={logoImg}
+                  alt="Wijayanandana logo"
+                  className="h-full w-full object-contain p-2"
+                />
+              </div>
+              <div className="leading-tight">
+                <p className="text-sm font-semibold tracking-[0.16em] text-[#3a2518] uppercase">
+                  Wijayanandana
+                </p>
+                <p className="text-[0.76rem] text-[#7a5b45]">Food Hotel &amp; Bakery</p>
+              </div>
+            </div>
             <p className="text-[0.78rem] tracking-[0.28em] uppercase text-[#a67b49]">
               Welcome back
             </p>

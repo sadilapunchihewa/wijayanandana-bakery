@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap');
 @import "tailwindcss";
 
 /* Luxury theme base styles */
@@ -23,12 +24,20 @@ body,
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display",
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   background:
     radial-gradient(circle at top left, #ffffff 0, #f7f3ec 40%, #f0e4d5 100%);
   color: #3a2518;
   -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
 }
 
 #root {
@@ -74,4 +83,22 @@ body {
 
 .lux-section {
   scroll-margin-top: 96px;
+}
+
+.hero-copy-shadow {
+  text-shadow: 0 3px 18px rgba(18, 8, 4, 0.72), 0 1px 2px rgba(18, 8, 4, 0.85);
+}
+
+.admin-main {
+  padding-left: 0;
+}
+
+@media (min-width: 1024px) {
+  .admin-main {
+    padding-left: 20rem;
+  }
+
+  .admin-main.admin-main-collapsed {
+    padding-left: 7rem;
+  }
 }

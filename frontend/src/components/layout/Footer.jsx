@@ -1,86 +1,120 @@
+import { motion } from 'framer-motion'
+import logoImg from '../../assets/images/logo.png.jpg'
+
+const links = [
+  ['Home', '#hero'],
+  ['Meals', '#meals'],
+  ['Bakery', '#bakery'],
+  ['Our History', '#history'],
+  ['Contact', '#contact'],
+]
+
 export default function Footer() {
   return (
-    <footer
-      id="contact"
-      className="mt-24 border-t border-[#e2d2b8]/70 bg-[#21140e]/98 text-[#f5e9dd]"
-    >
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12 md:flex-row md:justify-between">
-        <div>
-          <p className="text-xs tracking-[0.2em] uppercase text-[#e2c79a]">
-            Wijayanandana Hotel &amp; Bakery
-          </p>
-          <p className="mt-3 max-w-xs text-sm text-[#f3dfc0]/90">
-            Freshly baked breads, indulgent cakes, and curated hotel dishes crafted every dawn in
-            our stone ovens.
-          </p>
-          <p className="mt-4 text-[0.75rem] text-[#f1dec4]/60">
-            © {new Date().getFullYear()} Wijayanandana. All rights reserved.
-          </p>
-        </div>
+    <footer id="contact" className="relative overflow-hidden bg-[#1A0D08] text-[#fff8ed]">
+      <div className="absolute -left-24 top-0 h-80 w-80 rounded-full bg-[#C89B3C]/20 blur-3xl" />
+      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#fff2d0]/10 blur-3xl" />
 
-        <div className="grid flex-1 grid-cols-2 gap-8 text-[0.78rem] md:grid-cols-3">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#e2c79a]">
-              Visit
+      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75 }}
+          >
+            <div className="flex items-center gap-5">
+              <span className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-white shadow-[0_30px_70px_rgba(0,0,0,0.35)]">
+                <img src={logoImg} alt="Wijayanandana logo" className="h-full w-full object-contain p-3" />
+              </span>
+              <div>
+                <p className="text-[0.72rem] uppercase tracking-[0.34em] text-[#E8C56A]">
+                  Wijayanandana
+                </p>
+                <h2 className="mt-2 font-display text-5xl font-extrabold leading-none">Bakers &amp; Restaurant</h2>
+              </div>
+            </div>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-[#ead9c1]/76">
+              Sri Lankan breakfast, lunch, dinner, short eats, tea, and fresh bakery items served
+              with warm Anguruwella, Ruwanwella hospitality.
             </p>
-            <p className="mt-3 text-[#f3dfc0]/85">
-              Main Street,
-              <br />
-              Matara, Sri Lanka
-            </p>
-            <p className="mt-3 text-[#f3dfc0]/70">Open daily · 6.00 AM – 10.00 PM</p>
-          </div>
+          </motion.div>
 
-          <div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#e2c79a]">
-              Contact
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1 }}
+            onSubmit={(e) => e.preventDefault()}
+            className="rounded-[34px] border border-white/12 bg-white/8 p-6 shadow-[0_28px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl"
+          >
+            <p className="font-display text-3xl font-extrabold">Join the tasting journal.</p>
+            <p className="mt-3 text-sm leading-6 text-[#ead9c1]/70">
+              Seasonal cake collections, festive menus, and private dining notes.
             </p>
-            <p className="mt-3 text-[#f3dfc0]/85">
-              Phone:{' '}
-              <a href="tel:+94771234567" className="hover:text-[#f8e1b3]">
-                +94 77 123 4567
-              </a>
-            </p>
-            <p className="mt-2 text-[#f3dfc0]/85">
-              WhatsApp:{' '}
-              <a
-                href="https://wa.me/94771234567"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-[#f8e1b3]"
-              >
-                +94 77 123 4567
-              </a>
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#e2c79a]">
-              Newsletter
-            </p>
-            <p className="mt-3 max-w-xs text-[#f3dfc0]/80">
-              Be the first to taste new collections and seasonal menus.
-            </p>
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mt-3 flex max-w-xs items-center overflow-hidden rounded-full border border-[#3d2515] bg-[#120b07]/80"
-            >
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
                 placeholder="Email address"
-                className="flex-1 bg-transparent px-3 py-2 text-[0.75rem] text-[#f5e9dd] placeholder:text-[#c1a488]/60 focus:outline-none"
+                className="min-h-12 flex-1 rounded-full border border-white/12 bg-[#100805]/70 px-5 text-sm text-[#fff8ed] placeholder:text-[#bca58d] outline-none transition focus:border-[#C89B3C]"
               />
               <button
                 type="submit"
-                className="px-4 py-2 text-[0.72rem] font-medium tracking-[0.18em] uppercase text-[#120b07] bg-gradient-to-r from-[#e0c067] to-[#b48a2c]"
+                className="rounded-full bg-gradient-to-r from-[#E8C56A] via-[#C89B3C] to-[#956428] px-7 py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#24130b] transition hover:-translate-y-0.5 hover:brightness-105"
               >
-                Join
+                Subscribe
               </button>
-            </form>
+            </div>
+          </motion.form>
+        </div>
+
+        <div className="mt-16 grid gap-8 border-t border-white/10 pt-10 md:grid-cols-4">
+          <div>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.26em] text-[#E8C56A]">Visit</p>
+            <p className="mt-4 text-sm leading-7 text-[#ead9c1]/76">
+              Anguruwella,
+              <br />
+              Ruwanwella, Sri Lanka
+            </p>
+          </div>
+          <div>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.26em] text-[#E8C56A]">Hours</p>
+            <p className="mt-4 text-sm leading-7 text-[#ead9c1]/76">
+              Bakery 6.00 AM - 10.00 PM
+              <br />
+              Meals 6.00 AM - 10.00 PM
+            </p>
+          </div>
+          <div>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.26em] text-[#E8C56A]">Explore</p>
+            <div className="mt-4 grid gap-2 text-sm text-[#ead9c1]/76">
+              {links.map(([label, href]) => (
+                <a key={label} href={href} className="transition hover:text-[#E8C56A]">
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.26em] text-[#E8C56A]">Social</p>
+            <div className="mt-4 flex gap-3">
+              {['Fb', 'Ig', 'Wa'].map((item) => (
+                <a
+                  key={item}
+                  href={item === 'Wa' ? 'https://wa.me/94771234567' : '#hero'}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/8 text-xs font-bold uppercase tracking-[0.12em] text-[#fff8ed] transition hover:border-[#C89B3C] hover:bg-[#C89B3C] hover:text-[#1A0D08] hover:shadow-[0_0_28px_rgba(200,155,60,0.42)]"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
+
+        <p className="mt-10 text-xs text-[#ead9c1]/46">
+          Copyright {new Date().getFullYear()} Wijayanandana Hotel & Bakers. All rights reserved.
+        </p>
       </div>
     </footer>
   )
 }
-
